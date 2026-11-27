@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeuralStudio — Estúdio Local</title>
+  <link rel="stylesheet" href="/static/estilo.css">
+</head>
+<body>
+
+<!-- ===================== SPRITE DE ÍCONES ===================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tune" viewBox="0 0 24 24">
+    <path d="M3 6h11M18 6h3M3 12h5M12 12h9M3 18h13M20 18h1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="16" cy="6" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="10" cy="12" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="18" cy="18" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  </symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24">
+    <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-download" viewBox="0 0 24 24">
+    <path d="M12 3v11m0 0 4-4m-4 4-4-4M4 19h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24">
+    <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-image" viewBox="0 0 24 24">
+    <rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <circle cx="8.5" cy="9.5" r="1.8" fill="currentColor"/>
+    <path d="m4 18 5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-dice" viewBox="0 0 24 24">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    <circle cx="8.5" cy="8.5" r="1.4" fill="currentColor"/>
+    <circle cx="15.5" cy="8.5" r="1.4" fill="currentColor"/>
+    <circle cx="12" cy="12" r="1.4" fill="currentColor"/>
+    <circle cx="8.5" cy="15.5" r="1.4" fill="currentColor"/>
+    <circle cx="15.5" cy="15.5" r="1.4" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+    <path d="m8 12 2.6 2.6L16 9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-x" viewBox="0 0 24 24">
+    <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24">
+    <path d="M12 2.5 13.8 8 19.5 9.8 13.8 11.6 12 17.1 10.2 11.6 4.5 9.8 10.2 8 12 2.5z" fill="currentColor"/>
+    <path d="M19 15.5 19.8 18 22.3 18.8 19.8 19.6 19 22.1 18.2 19.6 15.7 18.8 18.2 18 19 15.5z" fill="currentColor" opacity=".7"/>
+  </symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24">
+    <rect x="6" y="6" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <rect x="9.5" y="9.5" width="5" height="5" rx="1" fill="currentColor"/>
+    <path d="M9 3v2M15 3v2M9 19v2M15 19v2M3 9h2M3 15h2M19 9h2M19 15h2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24">
+    <path d="M20 11a8 8 0 1 0-2.3 6.3M20 5v6h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24">
+    <path d="M12 3 2.5 20h19L12 3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M12 9v5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+    <circle cx="12" cy="17" r="1.1" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-photo" viewBox="0 0 24 24">
+    <rect x="3" y="6" width="14" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M7 3h12a2 2 0 0 1 2 2v12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24">
+    <path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-translate" viewBox="0 0 24 24">
+    <path d="M3 5h9M7.5 3v2c0 4-2 7-4.5 9M5 8c.8 2.5 2.5 4.5 5 5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="m13 21 3.5-9 3.5 9M14.4 18h4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<!-- ===================== TOPO ===================== -->
+<header class="topo">
+  <div class="marca">
+    <div class="logo-mark">◈</div>
+    <div class="marca-texto">
+      <h1>NeuralStudio</h1>
+      <span>CORE ENGINE · SD-TURBO</span>
+    </div>
+  </div>
+
+  <div class="telemetria">
+    <div class="chip"><span class="led"></span><span id="chip-cpu">CPU —</span></div>
+    <div class="chip"><span class="led"></span><span id="chip-ram">RAM —</span></div>
+    <div class="chip"><span class="led"></span><span id="chip-gpu">GPU —</span></div>
+    <div class="chip chip-ok"><span class="led led-ok"></span>MODO OFFLINE</div>
+  </div>
+
+  <div class="topo-dir">
+    <span class="chip chip-cyan">Turbo FP32</span>
+    <span class="chip" id="chip-modelo">sd-turbo</span>
+    <div class="avatar">FL</div>
+  </div>
+</header>
+
+<!-- ===================== GRADE PRINCIPAL ===================== -->
+<main class="grade">
+
+  <!-- ---------- COLUNA 1: PARÂMETROS ---------- -->
+  <aside class="painel painel-parametros">
+    <div class="painel-cabecalho">
+      <div class="titulo"><svg class="ico"><use href="#i-tune"/></svg> Parâmetros de Síntese</div>
+      <span class="badge">SD-Turbo</span>
+    </div>
+
+    <div class="painel-corpo">
+
+      <!-- Checkpoint -->
+      <div class="campo">
+        <div class="campo-topo">
+          <label class="rotulo"><svg class="ico sm"><use href="#i-cpu"/></svg> Modelo Local</label>
+          <span class="mini cyan"><span class="led"></span><span id="modelo-status">Sob demanda</span></span>
+        </div>
+        <button class="select-fake select-modelo" id="btn-modelos" type="button" title="Gerenciar modelos locais">
+          <span class="select-modelo-info">
+            <strong id="modelo-ativo-nome">SD-Turbo</strong>
+            <span class="mini" id="modelo-ativo-tipo">Texto → Imagem</span>
+          </span>
+          <span class="tag-mini" id="modelo-ativo-tam">~2,5 GB</span>
+          <svg class="ico xs" style="transform:rotate(90deg)"><use href="#i-chevron"/></svg>
+        </button>
+      </div>
+
+      <!-- Prompt -->
+      <div class="campo">
+        <div class="campo-topo">
+          <label class="rotulo forte"><svg class="ico sm cyan"><use href="#i-sparkles"/></svg> Prompt Positivo</label>
+          <div class="acoes-mini">
+            <button id="btn-surpresa" class="mini-btn" type="button" title="Preencher com uma ideia aleatória">
+              <svg class="ico xs"><use href="#i-dice"/></svg> Surpreenda-me
+            </button>
+            <button id="btn-limpar" class="mini-icone" type="button" title="Limpar prompt">
+              <svg class="ico xs"><use href="#i-x"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="textarea-caixa">
+          <textarea id="prompt" rows="4" placeholder="Descreva com detalhes o que deseja criar. Ex.: um farol antigo em um penhasco durante uma tempestade, luz dramática, fotografia cinematográfica, ultra detalhado..."></textarea>
+          <div class="textarea-rodape">
+            <span id="contador" class="mini cyan">0 caracteres</span>
+            <span class="tag-mini">CLIP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estilo -->
+      <div class="campo">
+        <div class="campo-topo">
+          <label class="rotulo"><svg class="ico sm violeta"><use href="#i-sparkles"/></svg> Estilo Visual</label>
+          <span class="mini" id="estilo-atual">Sem estilo</span>
+        </div>
+        <div class="chips" id="chips-estilo"></div>
+      </div>
+
+      <!-- Proporção -->
+      <div class="campo">
+        <div class="campo-topo">
+          <label class="rotulo">Proporção &amp; Resolução</label>
+          <span class="mini cyan" id="resolucao-label">512 × 512 px (1:1)</span>
+        </div>
+        <div class="proporcoes" id="proporcoes"></div>
+      </div>
+
+      <!-- Passos -->
+      <div class="campo">
+        <div class="linha-param">
+          <span class="rotulo-mini">Passos de Inferência</span>
+          <span class="valor cyan" id="passos-valor">2 passos</span>
+        </div>
+        <input type="range" id="passos" min="1" max="4" step="1" value="2" class="slider">
+      </div>
+
+      <!-- Semente + Tradução -->
+      <div class="campo grid2">
+        <div>
+          <label class="rotulo-mini">Semente (Seed)</label>
+          <div class="input-caixa">
+            <input type="number" id="semente" value="-1" min="-1">
+            <button id="btn-dado" class="mini-icone" type="button" title="Gerar semente aleatória">
+              <svg class="ico xs"><use href="#i-dice"/></svg>
+            </button>
+          </div>
+        </div>
+        <div>
+          <label class="rotulo-mini">Tradução PT → EN</label>
+          <div class="traducao-fixa" title="O prompt é sempre traduzido automaticamente antes de gerar">
+            <svg class="ico xs cyan"><use href="#i-translate"/></svg>
+            <span>Sempre ativa</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="painel-rodape">
+      <button id="btn-gerar" class="btn-gerar" type="button">
+        <svg class="ico"><use href="#i-bolt"/></svg>
+        <span>Sintetizar Imagem</span>
+        <kbd>Ctrl+Enter</kbd>
+      </button>
+      <div class="rodape-info">
+        <span><span class="led"></span> Estimativa: <strong id="estimativa">~90 s</strong></span>
+        <span>Sem custos · 100% Offline</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ---------- COLUNA 2: CANVAS ---------- -->
+  <section class="painel painel-canvas">
+    <div class="canvas-topo">
+      <div class="canvas-status">
+        <span class="badge-status" id="status-badge"><svg class="ico xs"><use href="#i-check"/></svg> <span>Aguardando</span></span>
+        <span class="mini" id="job-id">ID: —</span>
+      </div>
+      <div class="canvas-acoes">
+        <button class="mini-icone" id="btn-atualizar" type="button" title="Atualizar histórico">
+          <svg class="ico xs"><use href="#i-refresh"/></svg>
+        </button>
+        <button class="mini-icone btn-interromper" id="btn-interromper" type="button" title="Interromper geração" hidden>
+          <svg class="ico xs"><use href="#i-x"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="canvas-area" id="canvas-area">
+      <div class="vazio" id="vazio">
+        <svg class="vazio-ico"><use href="#i-image"/></svg>
+        <p>Descreva sua imagem e clique em <strong>Sintetizar</strong></p>
+        <span>A primeira geração carrega o modelo na memória (~1–2 min)</span>
+      </div>
+
+      <img id="imagem" alt="Imagem gerada" hidden>
+
+      <div class="progresso-overlay" id="progresso" hidden>
+        <div class="progresso-caixa">
+          <span id="progresso-texto">Gerando...</span>
+          <div class="barra"><div id="barra-preenchida"></div></div>
+        </div>
+      </div>
+
+      <div class="canvas-rodape-acoes">
+        <a class="btn-baixar" id="btn-baixar" hidden download>
+          <svg class="ico xs"><use href="#i-download"/></svg> Salvar PNG
+        </a>
+      </div>
+    </div>
+
+    <div class="metadados">
+      <div class="meta"><span>Tempo de Geração</span><strong class="cyan" id="meta-tempo">—</strong></div>
+      <div class="meta"><span>Resolução Efetiva</span><strong id="meta-resolucao">—</strong></div>
+      <div class="meta"><span>Semente Usada</span><strong class="violeta" id="meta-semente">—</strong></div>
+      <div class="meta"><span>Modelo</span><strong class="indigo" id="meta-modelo">sd-turbo</strong></div>
+    </div>
+  </section>
+
+  <!-- ---------- COLUNA 3: HISTÓRICO ---------- -->
+  <aside class="painel painel-historico">
+    <div class="painel-cabecalho">
+      <div class="titulo"><svg class="ico violeta"><use href="#i-photo"/></svg> Histórico Local</div>
+      <span class="mini" id="hist-contagem">0 renders</span>
+    </div>
+
+    <div class="historico-lista" id="historico-lista"></div>
+
+    <button class="btn-pasta" id="btn-pasta" type="button">
+      <span><svg class="ico xs cyan"><use href="#i-folder"/></svg> Abrir Pasta de Disco</span>
+      <span class="tag-mini">saidas/</span>
+    </button>
+
+    <div class="hardware">
+      <div class="hw-topo">
+        <span class="led"></span>
+        <span>Processador Local</span>
+        <span class="violeta" id="hw-nome">CPU</span>
+      </div>
+      <div class="hw-item">
+        <div class="hw-linha"><span>Utilização da CPU</span><span class="cyan" id="hw-cpu-val">—</span></div>
+        <div class="barra"><div id="hw-cpu-barra"></div></div>
+      </div>
+      <div class="hw-item">
+        <div class="hw-linha"><span>Memória RAM</span><span class="indigo" id="hw-ram-val">—</span></div>
+        <div class="barra"><div id="hw-ram-barra"></div></div>
+      </div>
+      <div class="hw-rodape">
+        <span><svg class="ico xs"><use href="#i-cpu"/></svg> Modo CPU</span>
+        <span class="cyan" id="hw-ollama">Ollama —</span>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<div class="toast" id="toast" hidden></div>
+
+<!-- ===================== MODAL: MODELOS LOCAIS ===================== -->
+<div class="modal-fundo" id="modal-modelos" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal-topo">
+      <div class="titulo" id="modal-titulo">
+        <svg class="ico cyan"><use href="#i-cpu"/></svg> Modelos Locais
+      </div>
+      <button class="mini-icone" id="fechar-modal" type="button" title="Fechar">
+        <svg class="ico xs"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <p class="modal-sub">
+      Baixe uma vez e use para sempre, sem internet. Cada modelo tem uma função diferente.
+    </p>
+    <div class="modelos-lista" id="modelos-lista"></div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

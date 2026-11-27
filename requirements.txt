@@ -1,0 +1,17 @@
+# Dependências do NeuralStudio (gerador de imagens local)
+# PyTorch (CPU) deve ser instalado separadamente:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+diffusers>=0.31
+transformers>=4.44
+accelerate>=0.34
+safetensors>=0.4
+pillow>=10.0
+
+# servidor web
+fastapi>=0.115
+uvicorn>=0.30
+
+# telemetria e integração com Ollama
+psutil>=5.9
+requests>=2.31

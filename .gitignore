@@ -1,0 +1,15 @@
+# ambiente
+.venv/
+__pycache__/
+*.pyc
+
+# imagens e metadados gerados (não versionar)
+saidas/*.png
+saidas/*.jpg
+saidas/*.jpeg
+saidas/*.webp
+saidas/*.json
+
+# sistema
+.DS_Store
+*.log
